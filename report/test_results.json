@@ -1,0 +1,646 @@
+[
+  {
+    "id": "TC-F01",
+    "description": "Load extension in Chrome with the Manifest V3 manifest.",
+    "expected": "Extension loads without manifest errors.",
+    "actual": "The unpacked Manifest V3 extension loaded, its service worker started (id gibdglopaedibbjnmacgkkjhicdnfbge) and no manifest errors were reported.",
+    "status": "Pass",
+    "evidence": {
+      "file": "tests/report_cases.py",
+      "test_function": "test_functional",
+      "screenshot": null
+    },
+    "data": null
+  },
+  {
+    "id": "TC-F02",
+    "description": "Open a target page with candidate elements.",
+    "expected": "Content script runs and extracts candidates with text, DOM path and style.",
+    "actual": "The content script ran on demo/dark-checkout.html and extracted 23 visible candidates, each with text and a DOM path; computed style (colour, background, size, visibility) was read by the rules and is not exported.",
+    "status": "Pass",
+    "evidence": {
+      "file": "demo/dark-checkout.html",
+      "test_function": "test_functional",
+      "screenshot": null
+    },
+    "data": {
+      "candidateCount": 23
+    }
+  },
+  {
+    "id": "TC-F03",
+    "description": "Open a non-target page.",
+    "expected": "Content script does not run outside declared host patterns.",
+    "actual": "The manifest matches <all_urls>, so every http(s) page is a declared host; the content script ran on a plain non-shop page (tests/pages/f02_plain.html) and did not run on about:blank. No narrower host restriction exists.",
+    "status": "Fail",
+    "evidence": {
+      "file": "tests/pages/f02_plain.html",
+      "test_function": "test_functional",
+      "screenshot": null
+    },
+    "data": null
+  },
+  {
+    "id": "TC-F04",
+    "description": "Element exceeds threshold τ.",
+    "expected": "Element is outlined and explanation names the CCPA category.",
+    "actual": "4 elements were reported above τ = 0.6 and 4 outlines were drawn, each labelled with its CCPA category name and an explanation.",
+    "status": "Pass",
+    "evidence": {
+      "file": "demo/dark-checkout.html",
+      "test_function": "test_functional",
+      "screenshot": "report/screenshots/tc_f04_dark_checkout.png"
+    },
+    "data": {
+      "tags": [
+        "Basket sneaking (CCPA): This paid option was already selected before you touched it. Check whether you want it.",
+        "Interface interference (CCPA): This option is much less visible than the alternative next to it.",
+        "Confirm shaming (CCPA): The wording of this option may be designed to make you feel bad about declining.",
+        "Trick question (CCPA): This wording is confusing (for example a double negative) and may mislead you about your choice."
+      ]
+    }
+  },
+  {
+    "id": "TC-F05",
+    "description": "Element below threshold τ.",
+    "expected": "No highlight is shown.",
+    "actual": "The button 'Sign in to continue' has forced-action text evidence only (t = 0.9, α = 0.5, c = 0.45 < τ); 0 detections and 0 highlights were shown.",
+    "status": "Pass",
+    "evidence": {
+      "file": "tests/pages/f05_below_tau.html",
+      "test_function": "test_functional",
+      "screenshot": "report/screenshots/tc_f05_below_tau.png"
+    },
+    "data": null
+  },
+  {
+    "id": "TC-F06",
+    "description": "Reported detection is logged.",
+    "expected": "Backend stores record with site, page, category and confidence.",
+    "actual": "Not applicable: backend not built. Detections are stored locally with chrome.storage.local by the service worker.",
+    "status": "Not applicable",
+    "evidence": {
+      "file": "tests/report_cases.py",
+      "test_function": "test_functional",
+      "screenshot": null
+    },
+    "data": null
+  },
+  {
+    "id": "TC-F07",
+    "description": "Dashboard opened for a site with logged detections.",
+    "expected": "Manipulation Score and per-category counts are displayed.",
+    "actual": "Not applicable: dashboard not built. The toolbar popup shows the Manipulation Score and the current page's detections instead.",
+    "status": "Not applicable",
+    "evidence": {
+      "file": "tests/report_cases.py",
+      "test_function": "test_functional",
+      "screenshot": null
+    },
+    "data": null
+  },
+  {
+    "id": "TC-F08",
+    "description": "Highlighted control is clicked.",
+    "expected": "Original page behaviour is unchanged.",
+    "actual": "The highlighted pre-ticked checkbox was clicked: its state changed from True to False, and the element at its centre was the checkbox itself (highlight overlay has pointer-events: none).",
+    "status": "Pass",
+    "evidence": {
+      "file": "demo/dark-checkout.html",
+      "test_function": "test_functional",
+      "screenshot": null
+    },
+    "data": null
+  },
+  {
+    "id": "TC-I01",
+    "description": "Content script sends text batch to service worker.",
+    "expected": "Message received; request forwarded to inference service.",
+    "actual": "Not applicable: inference service not built. The content script does send its results to the service worker (pg:results message), but there is no inference service to forward text to.",
+    "status": "Not applicable",
+    "evidence": {
+      "file": "tests/report_cases.py",
+      "test_function": "test_integration",
+      "screenshot": null
+    },
+    "data": null
+  },
+  {
+    "id": "TC-I02",
+    "description": "Inference service returns confidences.",
+    "expected": "Vector of 13 category confidences returned for each text.",
+    "actual": "Not applicable: inference service not built. The local text stand-in (extension/text.js) returns a 13-value confidence vector per text (see TC-L tests).",
+    "status": "Not applicable",
+    "evidence": {
+      "file": "tests/report_cases.py",
+      "test_function": "test_integration",
+      "screenshot": null
+    },
+    "data": null
+  },
+  {
+    "id": "TC-I03",
+    "description": "Inference service unavailable.",
+    "expected": "Extension degrades gracefully; rule-only categories still evaluated; no crash.",
+    "actual": "No inference service exists; on demo/dark-checkout.html the extension made 0 external requests, raised 0 page errors and still reported 4 detections (basket_sneaking, confirm_shaming, interface_interference, trick_question) from local rules and the text stand-in.",
+    "status": "Pass",
+    "evidence": {
+      "file": "demo/dark-checkout.html",
+      "test_function": "test_integration",
+      "screenshot": null
+    },
+    "data": null
+  },
+  {
+    "id": "TC-I04",
+    "description": "Detection sent to backend.",
+    "expected": "Backend acknowledges and the record appears in the detection log.",
+    "actual": "Not applicable: backend not built.",
+    "status": "Not applicable",
+    "evidence": {
+      "file": "tests/report_cases.py",
+      "test_function": "test_integration",
+      "screenshot": null
+    },
+    "data": null
+  },
+  {
+    "id": "TC-I05",
+    "description": "Crawler and extension capture the same page.",
+    "expected": "Same candidate set and features recorded by both.",
+    "actual": "Candidate sets (DOM paths) compared on 3 pages: demo/dark-checkout.html: extension 23, Playwright 23, common 23; demo/fair-checkout.html: extension 19, Playwright 19, common 19; demo/cases/case3_quick_commerce.html: extension 13, Playwright 13, common 13. Features beyond text and DOM path were not compared.",
+    "status": "Pass",
+    "evidence": {
+      "file": "tests/playwright_extract.js",
+      "test_function": "test_integration",
+      "screenshot": null
+    },
+    "data": [
+      {
+        "page": "demo/dark-checkout.html",
+        "extension": 23,
+        "playwright": 23,
+        "common": 23,
+        "only_extension": [],
+        "only_playwright": []
+      },
+      {
+        "page": "demo/fair-checkout.html",
+        "extension": 19,
+        "playwright": 19,
+        "common": 19,
+        "only_extension": [],
+        "only_playwright": []
+      },
+      {
+        "page": "demo/cases/case3_quick_commerce.html",
+        "extension": 13,
+        "playwright": 13,
+        "common": 13,
+        "only_extension": [],
+        "only_playwright": []
+      }
+    ]
+  },
+  {
+    "id": "TC-S01",
+    "description": "Countdown timer that restarts on reload.",
+    "expected": "High rule confidence for false urgency.",
+    "actual": "After one reload the timer restarted; false urgency was reported with r = 1 (Timer showed 300s 7s ago; after reload it shows 300s (expected about 293s).).",
+    "status": "Pass",
+    "evidence": {
+      "file": "tests/pages/s01_timer_reset.html",
+      "test_function": "test_structural",
+      "screenshot": "report/screenshots/tc_s01_timer_reset.png"
+    },
+    "data": null
+  },
+  {
+    "id": "TC-S02",
+    "description": "Countdown timer that continues correctly across reloads.",
+    "expected": "No false-urgency evidence from the timer rule.",
+    "actual": "The timer counted down from a stored deadline across a reload; 0 false-urgency detections were made.",
+    "status": "Pass",
+    "evidence": {
+      "file": "tests/pages/s02_timer_real.html",
+      "test_function": "test_structural",
+      "screenshot": null
+    },
+    "data": null
+  },
+  {
+    "id": "TC-S03",
+    "description": "Insurance add-on checkbox checked on load.",
+    "expected": "High rule confidence for basket sneaking.",
+    "actual": "The pre-ticked insurance checkbox was reported as basket sneaking with r = 1.",
+    "status": "Pass",
+    "evidence": {
+      "file": "tests/pages/s03_preselected.html",
+      "test_function": "test_structural",
+      "screenshot": "report/screenshots/tc_s03_preselected.png"
+    },
+    "data": null
+  },
+  {
+    "id": "TC-S04",
+    "description": "Small, low-contrast dismiss link beside large accept button.",
+    "expected": "Contrast and area gap detected; interface-interference evidence.",
+    "actual": "Interface interference was reported on the decline link: Decline \"no thanks\" has contrast 1.54:1 and area 477px²; accept \"Yes, upgrade for ₹99\" has contrast 6.10:1 and area 7400px² (ratio 15.5)..",
+    "status": "Pass",
+    "evidence": {
+      "file": "tests/pages/s04_weak_decline.html",
+      "test_function": "test_structural",
+      "screenshot": "report/screenshots/tc_s04_weak_decline.png"
+    },
+    "data": null
+  },
+  {
+    "id": "TC-S05",
+    "description": "Accept and dismiss buttons of equal size and contrast.",
+    "expected": "No interface-interference evidence.",
+    "actual": "With equal accept and decline buttons, 0 interface-interference detections were made.",
+    "status": "Pass",
+    "evidence": {
+      "file": "tests/pages/s05_equal_buttons.html",
+      "test_function": "test_structural",
+      "screenshot": null
+    },
+    "data": null
+  },
+  {
+    "id": "TC-S06",
+    "description": "Element present in DOM with opacity 0.",
+    "expected": "Element identified as hidden.",
+    "actual": "The opacity:0 button #ghost was listed as hidden and excluded from candidates (hidden list: ['#ghost']).",
+    "status": "Pass",
+    "evidence": {
+      "file": "tests/pages/s06_hidden.html",
+      "test_function": "test_structural",
+      "screenshot": null
+    },
+    "data": null
+  },
+  {
+    "id": "TC-S07",
+    "description": "Checkout total higher than product-page price.",
+    "expected": "Drip-pricing evidence.",
+    "actual": "On the checkout step the platform fee, absent from the product step, was reported as drip pricing (1 detection).",
+    "status": "Pass",
+    "evidence": {
+      "file": "tests/pages/s07_drip.html",
+      "test_function": "test_structural",
+      "screenshot": "report/screenshots/tc_s07_drip.png"
+    },
+    "data": null
+  },
+  {
+    "id": "TC-S08",
+    "description": "Cancellation path longer than subscription path.",
+    "expected": "Subscription-trap evidence.",
+    "actual": "Not implemented: no subscription-trap rule exists (cancellation path length is not measured).",
+    "status": "Not implemented",
+    "evidence": {
+      "file": "tests/report_cases.py",
+      "test_function": "test_structural",
+      "screenshot": null
+    },
+    "data": null
+  },
+  {
+    "id": "TC-S09",
+    "description": "Known colour pairs (e.g. black on white).",
+    "expected": "Contrast ratio equals the WCAG reference value (21:1 for black on white).",
+    "actual": "In Node, contrastRatio(black, white) = 21.00:1, white on white = 1.00:1 and #777777 on white = 4.48:1.",
+    "status": "Pass",
+    "evidence": {
+      "file": "extension/rules.js",
+      "test_function": "test_structural (node)",
+      "screenshot": null
+    },
+    "data": {
+      "bw": 21,
+      "ww": 1,
+      "g777": 4.478089453577214
+    }
+  },
+  {
+    "id": "TC-L01",
+    "description": "English guilt-inducing dismissal text.",
+    "expected": "Highest confidence for confirm shaming.",
+    "actual": "Input \"No thanks, I don't want to save money\": highest confidence 0.9 for confirm_shaming.",
+    "status": "Pass",
+    "evidence": {
+      "file": "extension/text.js",
+      "test_function": "test_linguistic",
+      "screenshot": null
+    },
+    "data": [
+      {
+        "input_length": 37,
+        "processed_length": 37,
+        "vector": [
+          0,
+          0,
+          0.9,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "top_key": "confirm_shaming",
+        "top_conf": 0.9,
+        "matches": [
+          "confirm_shaming",
+          "confirm_shaming"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TC-L02",
+    "description": "Neutral English dismissal text (\"No, thanks\").",
+    "expected": "Negative class or low confidence for all categories.",
+    "actual": "Input \"No, thanks\": maximum confidence over all 13 categories was 0.",
+    "status": "Pass",
+    "evidence": {
+      "file": "extension/text.js",
+      "test_function": "test_linguistic",
+      "screenshot": null
+    },
+    "data": [
+      {
+        "input_length": 10,
+        "processed_length": 10,
+        "vector": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "top_key": null,
+        "top_conf": 0,
+        "matches": []
+      }
+    ]
+  },
+  {
+    "id": "TC-L03",
+    "description": "Roman-script Hinglish urgency or shaming text.",
+    "expected": "Appropriate category with confidence reported (Hinglish performance not yet validated).",
+    "actual": "Outputs: \"Jaldi karo, sirf 2 bache hain!\" -> false_urgency (0.7); \"Nahi, mujhe discount nahi chahiye\" -> confirm_shaming (0.85); \"Main risk lunga, insurance nahi chahiye\" -> confirm_shaming (0.9). These phrases are in the hand-written pattern list; Hinglish performance has not been validated on any dataset.",
+    "status": "Pass",
+    "evidence": {
+      "file": "extension/text.js",
+      "test_function": "test_linguistic",
+      "screenshot": null
+    },
+    "data": [
+      {
+        "input_length": 30,
+        "processed_length": 30,
+        "vector": [
+          0.7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "top_key": "false_urgency",
+        "top_conf": 0.7,
+        "matches": [
+          "false_urgency"
+        ]
+      },
+      {
+        "input_length": 33,
+        "processed_length": 33,
+        "vector": [
+          0,
+          0,
+          0.85,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "top_key": "confirm_shaming",
+        "top_conf": 0.85,
+        "matches": [
+          "confirm_shaming"
+        ]
+      },
+      {
+        "input_length": 39,
+        "processed_length": 39,
+        "vector": [
+          0,
+          0,
+          0.9,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "top_key": "confirm_shaming",
+        "top_conf": 0.9,
+        "matches": [
+          "confirm_shaming"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TC-L04",
+    "description": "Very long text beyond maximum length.",
+    "expected": "Text truncated; classification completes without error.",
+    "actual": "A 5120-character input was truncated to 512 characters and scored without error; the shaming phrase at the end fell outside the window, so the top category was None.",
+    "status": "Pass",
+    "evidence": {
+      "file": "extension/text.js",
+      "test_function": "test_linguistic",
+      "screenshot": null
+    },
+    "data": [
+      {
+        "input_length": 5120,
+        "processed_length": 512,
+        "vector": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "top_key": null,
+        "top_conf": 0,
+        "matches": []
+      }
+    ]
+  },
+  {
+    "id": "TC-L05",
+    "description": "Empty or whitespace-only text.",
+    "expected": "Element skipped or classified as negative.",
+    "actual": "Empty and whitespace-only inputs returned all-zero vectors (negative); the content script also skips whitespace-only text nodes when extracting candidates.",
+    "status": "Pass",
+    "evidence": {
+      "file": "extension/text.js",
+      "test_function": "test_linguistic",
+      "screenshot": null
+    },
+    "data": [
+      {
+        "input_length": 0,
+        "processed_length": 0,
+        "vector": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "top_key": null,
+        "top_conf": 0,
+        "matches": []
+      },
+      {
+        "input_length": 4,
+        "processed_length": 0,
+        "vector": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "top_key": null,
+        "top_conf": 0,
+        "matches": []
+      }
+    ]
+  },
+  {
+    "id": "TC-H01",
+    "description": "Harmless wording on deceptive layout (pre-checked add-on).",
+    "expected": "Detected through rule evidence.",
+    "actual": "The pre-ticked 'Gift wrap ₹49' checkbox was reported as basket sneaking with r = 1, t = 0.",
+    "status": "Pass",
+    "evidence": {
+      "file": "tests/pages/h01_rule_only.html",
+      "test_function": "test_hybrid",
+      "screenshot": null
+    },
+    "data": null
+  },
+  {
+    "id": "TC-H02",
+    "description": "Deceptive wording in neutral layout.",
+    "expected": "Detected through text evidence.",
+    "actual": "The equal-styled button \"No, I'd rather pay full price\" was reported as confirm shaming with r = 0, t = 0.9.",
+    "status": "Pass",
+    "evidence": {
+      "file": "tests/pages/h02_text_only.html",
+      "test_function": "test_hybrid",
+      "screenshot": null
+    },
+    "data": null
+  },
+  {
+    "id": "TC-H03",
+    "description": "Forced action needing both signals.",
+    "expected": "Fused confidence exceeds τ only when both contribute.",
+    "actual": "Overlay with 'Sign up to continue' wording: 1 forced-action detection (c = 0.95); overlay with neutral wording (rule only): 0; 'Sign up to continue' button without overlay (text only): 0.",
+    "status": "Pass",
+    "evidence": {
+      "file": "tests/pages/h03*.html",
+      "test_function": "test_hybrid",
+      "screenshot": "report/screenshots/tc_h03_wall_forced.png"
+    },
+    "data": null
+  },
+  {
+    "id": "TC-H04",
+    "description": "Ordinary page with no dark patterns.",
+    "expected": "No elements reported.",
+    "actual": "On demo/fair-checkout.html 0 elements were reported.",
+    "status": "Pass",
+    "evidence": {
+      "file": "demo/fair-checkout.html",
+      "test_function": "test_hybrid",
+      "screenshot": "report/screenshots/tc_h04_fair_checkout.png"
+    },
+    "data": null
+  },
+  {
+    "id": "TC-H05",
+    "description": "Change of αk in configuration.",
+    "expected": "Fused output changes without code changes.",
+    "actual": "Changing alpha for confirm shaming from 0 to 1 in a temporary copy of config.json (no other file changed) reduced the detections on demo/dark-checkout.html from 4 to 3.",
+    "status": "Pass",
+    "evidence": {
+      "file": "tests/config_test.py",
+      "test_function": "tests/config_test.py:main",
+      "screenshot": null
+    },
+    "data": null
+  }
+]
