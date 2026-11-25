@@ -245,7 +245,7 @@
     "id": "TC-S04",
     "description": "Small, low-contrast dismiss link beside large accept button.",
     "expected": "Contrast and area gap detected; interface-interference evidence.",
-    "actual": "Interface interference was reported on the decline link: Decline \"no thanks\" has contrast 1.54:1 and area 477px²; accept \"Yes, upgrade for ₹99\" has contrast 6.10:1 and area 7400px² (ratio 15.5)..",
+    "actual": "Interface interference was reported on the decline link: Decline \"no thanks\" has contrast 1.54:1 and area 477px²; accept \"Yes, upgrade for ₹99\" has contrast 6.10:1 and area 7400px² (ratio 15.5).",
     "status": "Pass",
     "evidence": {
       "file": "tests/pages/s04_weak_decline.html",

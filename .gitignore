@@ -3,4 +3,3 @@ __pycache__/
 models/
 *.pyc
 docs_dump.txt
-dist/
