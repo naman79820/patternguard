@@ -4,6 +4,10 @@ PatternGuard is a Chrome extension (Manifest V3, plain JavaScript, no build step
 
 Minor Project (ES-451), B.Tech CSE, JIMS Engineering Management Technical Campus (GGSIPU).
 
+**New here? Follow [SETUP.md](SETUP.md)** for step-by-step setup, and watch the demo video: [media/patternguard_demo.webm](media/patternguard_demo.webm).
+
+![PatternGuard demo preview](media/patternguard_demo.gif)
+
 ## How it works
 
 For every candidate element on a page the extension computes two confidence vectors over the 13 CCPA categories:
@@ -81,7 +85,8 @@ This runs `tests/unit.test.js` (Node), `tests/regression.py` (demo and case page
 | `data_public/` | Yada et al. (Apache-2.0) and Mathur et al. dataset files, as downloaded |
 | `docs/` | Original report (not modified) |
 | `report/` | Updated report copy, edit log, test results, case studies, error analysis, screenshots, TODO for the team |
-| `tools/` | Helper scripts (environment record, report update, screenshots) |
+| `tools/` | Helper scripts (environment record, report update, screenshots, demo video) |
+| `media/` | Demo video and preview GIF (`tools/demo_video.py`) |
 | `models/` | DistilBERT baseline weights (not in git) |
 
 ## Data sources
