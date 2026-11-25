@@ -1,0 +1,28 @@
+{
+  "note": "Binary classifier (dark pattern vs not) trained on English text from non-Indian shopping sites. Not used by the extension.",
+  "seed": 42,
+  "hyperparameters": {
+    "model": "distilbert-base-uncased",
+    "max_length": 64,
+    "epochs": 3,
+    "batch_size": 16,
+    "learning_rate": 5e-05
+  },
+  "train_n": 1884,
+  "test_n": 472,
+  "train_seconds": 617.4,
+  "device": "cpu",
+  "torch_threads": 6,
+  "distilbert": {
+    "accuracy": 0.9725,
+    "precision": 0.9869,
+    "recall": 0.9576,
+    "f1": 0.972
+  },
+  "regex_same_split": {
+    "accuracy": 0.6653,
+    "precision": 1.0,
+    "recall": 0.3305,
+    "f1": 0.4968
+  }
+}
