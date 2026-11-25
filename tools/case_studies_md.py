@@ -15,7 +15,7 @@ def outcome(r):
     return ", ".join(parts)
 
 lines = ["# Reconstructed CCPA case studies", "",
-         "Pages: `demo/cases/`. Expected outcomes: `tests/cases_expected.json` (committed before the first run, commit 505f56a).",
+         "Pages: `demo/cases/`. Expected outcomes: `tests/cases_expected.json` (committed before the first run, commit a574624).",
          "Runner: `python tests/run_cases.py --tag before|after`. Raw results: `report/case_results_before.json`, `report/case_results_after.json`.",
          "Matching is element level: a detection counts only if its element is the expected element and its category is the expected category.",
          "",
