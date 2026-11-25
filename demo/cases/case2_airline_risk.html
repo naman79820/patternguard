@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Case 2: airline add-on with a shaming opt-out (reconstruction)</title>
+<link rel="stylesheet" href="case.css">
+</head>
+<body>
+<p class="banner">Reconstruction of a practice reported in <a href="https://www.business-standard.com/industry/news/ccpa-fines-indigo-zepto-bookmyshow-dark-patterns-quick-commerce-penalty-126080600580_1.html">Business Standard, Aug 2026</a> (CCPA action against an airline whose add-on opt-out read "No I will take risk"); not the real site. "AeroLark Airways" is a made-up name.</p>
+<h1>AeroLark Airways</h1>
+<div id="app"></div>
+<script>
+  const app = document.getElementById('app');
+  function flight() {
+    app.innerHTML = `
+      <section><h2>Step 1 of 2: Your flight</h2>
+        <p>Bengaluru to Kolkata, 1 adult</p>
+        <div class="row"><span>Fare</span><span>₹5,980</span></div>
+        <div class="row total"><span>Total</span><span>₹5,980</span></div>
+      </section>
+      <a class="btn" id="to-addons" href="#addons">Continue</a>`;
+  }
+  function addons() {
+    app.innerHTML = `
+      <section><h2>Step 2 of 2: Protect your trip</h2>
+        <p>Travel assistance and insurance covers delays, cancellations and lost baggage.</p>
+        <button class="btn" id="add-cover">Yes, add cover for ₹249</button>
+        <button class="btn" id="no-cover">No I will take risk</button>
+      </section>`;
+  }
+  function route() { location.hash === '#addons' ? addons() : flight(); }
+  window.addEventListener('hashchange', route);
+  route();
+</script>
+</body>
+</html>

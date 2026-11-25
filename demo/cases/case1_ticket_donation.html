@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Case 1: ticket checkout with a pre-selected donation (reconstruction)</title>
+<link rel="stylesheet" href="case.css">
+</head>
+<body>
+<p class="banner">Reconstruction of a practice reported in <a href="https://www.business-standard.com/industry/news/ccpa-fines-indigo-zepto-bookmyshow-dark-patterns-quick-commerce-penalty-126080600580_1.html">Business Standard, Aug 2026</a> (CCPA action against a movie-ticketing platform); not the real site. "ReelSeat Cinemas" is a made-up name.</p>
+<h1>ReelSeat Cinemas: Booking summary</h1>
+<div id="app"></div>
+<script>
+  // Rendered by JavaScript; the donation is ticked from code after render.
+  const app = document.getElementById('app');
+  app.innerHTML = `
+    <section>
+      <p>Movie: The Monsoon Express (U/A), Screen 2, 2 seats (F7, F8)</p>
+      <div class="row"><span>Tickets (2 x ₹220)</span><span>₹440</span></div>
+      <div class="row"><span>Convenience fee</span><span>₹70.80</span></div>
+      <div class="row" id="donation-row"><span>Donation</span><span>₹1</span></div>
+      <div class="row total"><span>Amount payable</span><span id="total">₹511.80</span></div>
+    </section>
+    <section>
+      <label><input type="checkbox" id="donation"> Add ₹1 to support cinema workers (donation)</label>
+    </section>
+    <button class="btn" id="pay">Proceed to pay</button>`;
+  const d = document.getElementById('donation');
+  d.checked = true;
+  d.addEventListener('change', () => {
+    document.getElementById('donation-row').style.display = d.checked ? '' : 'none';
+    document.getElementById('total').textContent = d.checked ? '₹511.80' : '₹510.80';
+  });
+</script>
+</body>
+</html>

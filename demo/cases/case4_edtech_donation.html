@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Case 4: ed-tech checkout with a pre-selected donation (reconstruction)</title>
+<link rel="stylesheet" href="case.css">
+</head>
+<body>
+<p class="banner">Reconstruction of a practice reported in <a href="https://theprint.in/feature/zepto-firstcry-bookmyshow-consumer-protection-board/3007638/">ThePrint, Aug 2026</a> (CCPA action against an ed-tech platform); not the real site. "PadhLo Academy" is a made-up name.</p>
+<h1>PadhLo Academy: Checkout</h1>
+<div id="app"></div>
+<script>
+  const app = document.getElementById('app');
+  app.innerHTML = `
+    <section>
+      <p>Course: Class 12 Physics, full-year batch</p>
+      <div class="row"><span>Course fee</span><span>₹3,999</span></div>
+      <div class="row" id="donation-row"><span>Donation</span><span>₹10</span></div>
+      <div class="row total"><span>Total</span><span id="total">₹4,009</span></div>
+    </section>
+    <section>
+      <label><input type="checkbox" id="donation"> Donate ₹10 so that a student from a poor family can study for free</label>
+      <p><button class="btn light" id="remove-donation">Remove donation and let a student miss free classes</button></p>
+    </section>
+    <button class="btn" id="pay">Pay now</button>`;
+  const d = document.getElementById('donation');
+  d.checked = true; // ticked from code
+  const sync = () => {
+    document.getElementById('donation-row').style.display = d.checked ? '' : 'none';
+    document.getElementById('total').textContent = d.checked ? '₹4,009' : '₹3,999';
+  };
+  d.addEventListener('change', sync);
+  document.getElementById('remove-donation').addEventListener('click', () => { d.checked = false; sync(); });
+</script>
+</body>
+</html>

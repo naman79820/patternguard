@@ -1,0 +1,62 @@
+{
+  "note": "Written before the extension was run on the case pages. Each expected entry is an element-level ground-truth label (CSS selector + CCPA category) assigned by reading the page source against the CCPA definitions.",
+  "cases": [
+    {
+      "file": "case1_ticket_donation.html",
+      "title": "Movie-ticket checkout with a pre-selected Rs 1 donation",
+      "source": "https://www.business-standard.com/industry/news/ccpa-fines-indigo-zepto-bookmyshow-dark-patterns-quick-commerce-penalty-126080600580_1.html",
+      "reported_practice": "Basket sneaking (CCPA action against BookMyShow)",
+      "steps": [
+        { "name": "checkout", "expected": [ { "selector": "#donation", "category": "basket_sneaking" } ] }
+      ]
+    },
+    {
+      "file": "case2_airline_risk.html",
+      "title": "Airline add-on step whose opt-out reads 'No I will take risk'",
+      "source": "https://www.business-standard.com/industry/news/ccpa-fines-indigo-zepto-bookmyshow-dark-patterns-quick-commerce-penalty-126080600580_1.html",
+      "reported_practice": "Confirm shaming (CCPA action against IndiGo)",
+      "steps": [
+        { "name": "flight", "expected": [] },
+        { "name": "addons", "action": { "click": "#to-addons", "wait_for": "#addons" },
+          "expected": [ { "selector": "#no-cover", "category": "confirm_shaming" } ] }
+      ]
+    },
+    {
+      "file": "case3_quick_commerce.html",
+      "title": "Quick-commerce cart; checkout adds a handling charge and a pre-included membership",
+      "source": "https://www.business-standard.com/industry/news/ccpa-fines-indigo-zepto-bookmyshow-dark-patterns-quick-commerce-penalty-126080600580_1.html",
+      "reported_practice": "Drip pricing and basket sneaking (CCPA action against Zepto)",
+      "steps": [
+        { "name": "cart", "expected": [] },
+        { "name": "checkout", "action": { "click": "#to-checkout", "wait_for": "step=checkout" },
+          "expected": [
+            { "selector": "#handling", "category": "drip_pricing" },
+            { "selector": "#membership-line", "category": "drip_pricing" },
+            { "selector": "#membership", "category": "basket_sneaking" }
+          ] }
+      ]
+    },
+    {
+      "file": "case4_edtech_donation.html",
+      "title": "Ed-tech checkout with a pre-selected Rs 10 donation and emotional wording to keep it",
+      "source": "https://theprint.in/feature/zepto-firstcry-bookmyshow-consumer-protection-board/3007638/",
+      "reported_practice": "Basket sneaking (CCPA action against Physics Wallah); confirm shaming checked as a second label",
+      "steps": [
+        { "name": "checkout", "expected": [
+            { "selector": "#donation", "category": "basket_sneaking" },
+            { "selector": "#remove-donation", "category": "confirm_shaming" }
+          ] }
+      ]
+    },
+    {
+      "file": "case5_fair_control.html",
+      "title": "Fair version of case 3: all charges on step 1, nothing pre-selected",
+      "source": "https://www.business-standard.com/industry/news/ccpa-fines-indigo-zepto-bookmyshow-dark-patterns-quick-commerce-penalty-126080600580_1.html",
+      "reported_practice": "Control (expected 0)",
+      "steps": [
+        { "name": "cart", "expected": [] },
+        { "name": "checkout", "action": { "click": "#to-checkout", "wait_for": "step=checkout" }, "expected": [] }
+      ]
+    }
+  ]
+}

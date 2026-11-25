@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Case 5: fair quick-commerce checkout (control)</title>
+<link rel="stylesheet" href="case.css">
+</head>
+<body>
+<p class="banner">Fair control version of the practice reported in <a href="https://www.business-standard.com/industry/news/ccpa-fines-indigo-zepto-bookmyshow-dark-patterns-quick-commerce-penalty-126080600580_1.html">Business Standard, Aug 2026</a>; not a real site. All charges are shown on step 1 and nothing is pre-selected. "Tokri Express" is a made-up name.</p>
+<h1>Tokri Express</h1>
+<div id="app"></div>
+<script>
+  const app = document.getElementById('app');
+  const items = 189, handling = 9, membership = 99;
+  let member = false;
+  function bill() {
+    return `
+        <div class="row"><span>Item total</span><span>₹${items}</span></div>
+        <div class="row"><span>Handling charge</span><span>₹${handling}</span></div>
+        ${member ? `<div class="row"><span>Membership fee</span><span>₹${membership}</span></div>` : ''}
+        <div class="row total"><span>To pay</span><span>₹${items + handling + (member ? membership : 0)}</span></div>`;
+  }
+  function cart() {
+    app.innerHTML = `
+      <section><h2>Your cart</h2>
+        <div class="row"><span>Bananas, 6 pcs</span><span>₹54</span></div>
+        <div class="row"><span>Toned milk, 1 L</span><span>₹68</span></div>
+        <div class="row"><span>Brown bread</span><span>₹67</span></div>
+        ${bill()}
+      </section>
+      <section>
+        <label><input type="checkbox" id="membership"> Tokri Plus membership, ₹${membership} for 3 months (optional)</label>
+      </section>
+      <button class="btn" id="to-checkout">Proceed to checkout</button>`;
+    document.getElementById('membership').addEventListener('change', (e) => { member = e.target.checked; });
+    document.getElementById('to-checkout').addEventListener('click', () => {
+      history.pushState({}, '', '?step=checkout');
+      render();
+    });
+  }
+  function checkout() {
+    app.innerHTML = `<section><h2>Bill details</h2>${bill()}</section>
+      <button class="btn" id="place">Place order</button>`;
+  }
+  function render() {
+    new URLSearchParams(location.search).get('step') === 'checkout' ? checkout() : cart();
+  }
+  window.addEventListener('popstate', render);
+  render();
+</script>
+</body>
+</html>
