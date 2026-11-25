@@ -1,0 +1,234 @@
+[
+  {
+    "file": "case1_ticket_donation.html",
+    "step": "checkout",
+    "source": "https://www.business-standard.com/industry/news/ccpa-fines-indigo-zepto-bookmyshow-dark-patterns-quick-commerce-penalty-126080600580_1.html",
+    "reported_practice": "Basket sneaking (CCPA action against BookMyShow)",
+    "expected": [
+      {
+        "selector": "#donation",
+        "category": "basket_sneaking"
+      }
+    ],
+    "detected": [
+      {
+        "key": "basket_sneaking",
+        "path": "#donation",
+        "confidence": 1,
+        "text": "Add ₹1 to support cinema workers (donation)",
+        "evidence": "Paid option \"Add ₹1 to support cinema workers (donation)\" was ticked by a script before any user interaction."
+      }
+    ],
+    "tp": 1,
+    "fp": 0,
+    "fn": 0,
+    "missed": [],
+    "false_positives": [],
+    "scan_ms": 14.8,
+    "screenshot": "report/screenshots/case1_ticket_donation_checkout_before.png"
+  },
+  {
+    "file": "case2_airline_risk.html",
+    "step": "flight",
+    "source": "https://www.business-standard.com/industry/news/ccpa-fines-indigo-zepto-bookmyshow-dark-patterns-quick-commerce-penalty-126080600580_1.html",
+    "reported_practice": "Confirm shaming (CCPA action against IndiGo)",
+    "expected": [],
+    "detected": [
+      {
+        "key": "confirm_shaming",
+        "path": "html > body:nth-of-type(1) > p:nth-of-type(1)",
+        "confidence": 0.95,
+        "text": "Reconstruction of a practice reported in Business Standard, Aug 2026 (CCPA action against an airline whose add-on opt-ou",
+        "evidence": "Text matched confirm shaming wording: \"Reconstruction of a practice reported in Business Standard, Aug 2026 (CCPA actio\""
+      }
+    ],
+    "tp": 0,
+    "fp": 1,
+    "fn": 0,
+    "missed": [],
+    "false_positives": [
+      {
+        "key": "confirm_shaming",
+        "path": "html > body:nth-of-type(1) > p:nth-of-type(1)",
+        "text": "Reconstruction of a practice reported in Business Standard, Aug 2026 (CCPA action against an airline whose add-on opt-ou"
+      }
+    ],
+    "scan_ms": 15.2,
+    "screenshot": "report/screenshots/case2_airline_risk_flight_before.png"
+  },
+  {
+    "file": "case2_airline_risk.html",
+    "step": "addons",
+    "source": "https://www.business-standard.com/industry/news/ccpa-fines-indigo-zepto-bookmyshow-dark-patterns-quick-commerce-penalty-126080600580_1.html",
+    "reported_practice": "Confirm shaming (CCPA action against IndiGo)",
+    "expected": [
+      {
+        "selector": "#no-cover",
+        "category": "confirm_shaming"
+      }
+    ],
+    "detected": [
+      {
+        "key": "confirm_shaming",
+        "path": "#no-cover",
+        "confidence": 0.95,
+        "text": "No I will take risk",
+        "evidence": "Text matched confirm shaming wording: \"No I will take risk\""
+      },
+      {
+        "key": "confirm_shaming",
+        "path": "html > body:nth-of-type(1) > p:nth-of-type(1)",
+        "confidence": 0.95,
+        "text": "Reconstruction of a practice reported in Business Standard, Aug 2026 (CCPA action against an airline whose add-on opt-ou",
+        "evidence": "Text matched confirm shaming wording: \"Reconstruction of a practice reported in Business Standard, Aug 2026 (CCPA actio\""
+      }
+    ],
+    "tp": 1,
+    "fp": 1,
+    "fn": 0,
+    "missed": [],
+    "false_positives": [
+      {
+        "key": "confirm_shaming",
+        "path": "html > body:nth-of-type(1) > p:nth-of-type(1)",
+        "text": "Reconstruction of a practice reported in Business Standard, Aug 2026 (CCPA action against an airline whose add-on opt-ou"
+      }
+    ],
+    "scan_ms": 3.1,
+    "screenshot": "report/screenshots/case2_airline_risk_addons_before.png"
+  },
+  {
+    "file": "case3_quick_commerce.html",
+    "step": "cart",
+    "source": "https://www.business-standard.com/industry/news/ccpa-fines-indigo-zepto-bookmyshow-dark-patterns-quick-commerce-penalty-126080600580_1.html",
+    "reported_practice": "Drip pricing and basket sneaking (CCPA action against Zepto)",
+    "expected": [],
+    "detected": [],
+    "tp": 0,
+    "fp": 0,
+    "fn": 0,
+    "missed": [],
+    "false_positives": [],
+    "scan_ms": 25.7,
+    "screenshot": "report/screenshots/case3_quick_commerce_cart_before.png"
+  },
+  {
+    "file": "case3_quick_commerce.html",
+    "step": "checkout",
+    "source": "https://www.business-standard.com/industry/news/ccpa-fines-indigo-zepto-bookmyshow-dark-patterns-quick-commerce-penalty-126080600580_1.html",
+    "reported_practice": "Drip pricing and basket sneaking (CCPA action against Zepto)",
+    "expected": [
+      {
+        "selector": "#handling",
+        "category": "drip_pricing"
+      },
+      {
+        "selector": "#membership-line",
+        "category": "drip_pricing"
+      },
+      {
+        "selector": "#membership",
+        "category": "basket_sneaking"
+      }
+    ],
+    "detected": [
+      {
+        "key": "basket_sneaking",
+        "path": "#membership",
+        "confidence": 1,
+        "text": "Tokri Plus membership, ₹99 for 3 months",
+        "evidence": "Paid option \"Tokri Plus membership, ₹99 for 3 months\" was ticked by a script before any user interaction."
+      },
+      {
+        "key": "drip_pricing",
+        "path": "#handling",
+        "confidence": 1,
+        "text": "Handling charge ₹9",
+        "evidence": "Charge \"Handling charge ₹9\" was not shown on an earlier step (/demo/cases/case3_quick_commerce.html) where prices were displayed."
+      },
+      {
+        "key": "drip_pricing",
+        "path": "#membership-line",
+        "confidence": 1,
+        "text": "Membership fee ₹99",
+        "evidence": "Charge \"Membership fee ₹99\" was not shown on an earlier step (/demo/cases/case3_quick_commerce.html) where prices were displayed."
+      }
+    ],
+    "tp": 3,
+    "fp": 0,
+    "fn": 0,
+    "missed": [],
+    "false_positives": [],
+    "scan_ms": 3.7,
+    "screenshot": "report/screenshots/case3_quick_commerce_checkout_before.png"
+  },
+  {
+    "file": "case4_edtech_donation.html",
+    "step": "checkout",
+    "source": "https://theprint.in/feature/zepto-firstcry-bookmyshow-consumer-protection-board/3007638/",
+    "reported_practice": "Basket sneaking (CCPA action against Physics Wallah); confirm shaming checked as a second label",
+    "expected": [
+      {
+        "selector": "#donation",
+        "category": "basket_sneaking"
+      },
+      {
+        "selector": "#remove-donation",
+        "category": "confirm_shaming"
+      }
+    ],
+    "detected": [
+      {
+        "key": "basket_sneaking",
+        "path": "#donation",
+        "confidence": 1,
+        "text": "Donate ₹10 so that a student from a poor family can study for free",
+        "evidence": "Paid option \"Donate ₹10 so that a student from a poor family can study for free\" was ticked by a script before any user interaction."
+      },
+      {
+        "key": "confirm_shaming",
+        "path": "#remove-donation",
+        "confidence": 0.85,
+        "text": "Remove donation and let a student miss free classes",
+        "evidence": "Text matched confirm shaming wording: \"Remove donation and let a student miss free classes\""
+      }
+    ],
+    "tp": 2,
+    "fp": 0,
+    "fn": 0,
+    "missed": [],
+    "false_positives": [],
+    "scan_ms": 16.1,
+    "screenshot": "report/screenshots/case4_edtech_donation_checkout_before.png"
+  },
+  {
+    "file": "case5_fair_control.html",
+    "step": "cart",
+    "source": "https://www.business-standard.com/industry/news/ccpa-fines-indigo-zepto-bookmyshow-dark-patterns-quick-commerce-penalty-126080600580_1.html",
+    "reported_practice": "Control (expected 0)",
+    "expected": [],
+    "detected": [],
+    "tp": 0,
+    "fp": 0,
+    "fn": 0,
+    "missed": [],
+    "false_positives": [],
+    "scan_ms": 15.2,
+    "screenshot": "report/screenshots/case5_fair_control_cart_before.png"
+  },
+  {
+    "file": "case5_fair_control.html",
+    "step": "checkout",
+    "source": "https://www.business-standard.com/industry/news/ccpa-fines-indigo-zepto-bookmyshow-dark-patterns-quick-commerce-penalty-126080600580_1.html",
+    "reported_practice": "Control (expected 0)",
+    "expected": [],
+    "detected": [],
+    "tp": 0,
+    "fp": 0,
+    "fn": 0,
+    "missed": [],
+    "false_positives": [],
+    "scan_ms": 3,
+    "screenshot": "report/screenshots/case5_fair_control_checkout_before.png"
+  }
+]

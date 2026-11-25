@@ -1,5 +1,5 @@
 {
-  "passed": 14,
+  "passed": 22,
   "failed": 0,
   "checks": [
     {
@@ -110,6 +110,76 @@
       "actual": [
         "confirm_shaming"
       ],
+      "pass": true
+    },
+    {
+      "check": "case1_ticket_donation.html checkout: categories",
+      "expected": [
+        "basket_sneaking"
+      ],
+      "actual": [
+        "basket_sneaking"
+      ],
+      "pass": true
+    },
+    {
+      "check": "case2_airline_risk.html flight: categories",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "check": "case2_airline_risk.html addons: categories",
+      "expected": [
+        "confirm_shaming"
+      ],
+      "actual": [
+        "confirm_shaming"
+      ],
+      "pass": true
+    },
+    {
+      "check": "case3_quick_commerce.html cart: categories",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "check": "case3_quick_commerce.html checkout: categories",
+      "expected": [
+        "basket_sneaking",
+        "drip_pricing",
+        "drip_pricing"
+      ],
+      "actual": [
+        "basket_sneaking",
+        "drip_pricing",
+        "drip_pricing"
+      ],
+      "pass": true
+    },
+    {
+      "check": "case4_edtech_donation.html checkout: categories",
+      "expected": [
+        "basket_sneaking",
+        "confirm_shaming"
+      ],
+      "actual": [
+        "basket_sneaking",
+        "confirm_shaming"
+      ],
+      "pass": true
+    },
+    {
+      "check": "case5_fair_control.html cart: categories",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "check": "case5_fair_control.html checkout: categories",
+      "expected": [],
+      "actual": [],
       "pass": true
     }
   ]

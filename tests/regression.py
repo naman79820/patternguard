@@ -106,7 +106,7 @@ def case_checks(ctx, base):
         for step in case["steps"]:
             if step.get("action"):
                 s = hash_nav(page, step["action"]["click"], step["action"]["wait_for"])
-            check(f"{case['file']} {step['name']}: categories", categories(s), sorted(step["regression_categories"]))
+            check(f"{case['file']} {step['name']}: categories", categories(s), sorted(e["category"] for e in step["expected"]))
     page.close()
 
 

@@ -16,7 +16,9 @@
       explain: 'This countdown appears to restart when the page is reloaded, so the deadline may not be real.' },
     { id: 2, key: 'basket_sneaking', name: 'Basket sneaking',
       explain: 'This paid option was already selected before you touched it. Check whether you want it.' },
-    { id: 3, key: 'confirm_shaming', name: 'Confirm shaming',
+    // textScope 'control': text evidence counts only on an option the user can choose
+    // (button, link, label, checkbox ...), because the pattern is the wording of a dismissal option.
+    { id: 3, key: 'confirm_shaming', name: 'Confirm shaming', textScope: 'control',
       explain: 'The wording of this option may be designed to make you feel bad about declining.' },
     { id: 4, key: 'forced_action', name: 'Forced action',
       explain: 'This screen blocks the page and asks you to sign up or install an app before you can continue.' },

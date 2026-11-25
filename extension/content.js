@@ -169,7 +169,9 @@
       const text = el.tagName === 'INPUT' ? (el.value || '') : R.visibleText(el);
       const t = PG.text.score(text, cats);
       const r = ruleVec.get(el) || new Array(K).fill(0);
-      const c = cats.map((cat, k) => cat.alpha * r[k] + (1 - cat.alpha) * t.vector[k]);
+      const isControl = el.matches(INTERACTIVE_SEL);
+      const tv = t.vector.map((v, k) => (cats[k].textScope === 'control' && !isControl ? 0 : v));
+      const c = cats.map((cat, k) => cat.alpha * r[k] + (1 - cat.alpha) * tv[k]);
       let kStar = 0;
       for (let k = 1; k < K; k++) if (c[k] > c[kStar]) kStar = k;
       if (c[kStar] >= CFG.tau) {
@@ -178,7 +180,7 @@
           (t.matches.find((m) => m.key === cat.key) ? `Text matched ${cat.name.toLowerCase()} wording: "${text.slice(0, 80)}"` : '');
         detections.push({
           el, category: cat.id, key: cat.key, name: cat.name, confidence: +c[kStar].toFixed(3),
-          r: +r[kStar].toFixed(3), t: +t.vector[kStar].toFixed(3), alpha: cat.alpha,
+          r: +r[kStar].toFixed(3), t: +tv[kStar].toFixed(3), alpha: cat.alpha,
           text: (el.tagName === 'INPUT' || el.matches('[role=checkbox],[role=switch],[role=radio]') ? R.optionText(el) : text).slice(0, 120),
           evidence: why, explanation: cat.explain
         });
@@ -238,22 +240,30 @@
     const style = document.createElement('style');
     style.textContent =
       '.box{position:absolute;border:2px solid #c0392b;border-radius:3px;pointer-events:none;box-sizing:border-box}' +
-      '.tag{position:absolute;left:-2px;bottom:100%;background:#c0392b;color:#fff;font:12px/1.3 Arial,sans-serif;' +
-      'padding:2px 6px;border-radius:3px 3px 3px 0;max-width:320px;white-space:normal;pointer-events:none}';
+      '.tag{position:absolute;background:#c0392b;color:#fff;font:11px/1.35 Arial,sans-serif;padding:2px 6px;' +
+      'border-radius:3px;width:max-content;max-width:440px;white-space:normal;pointer-events:none}';
     frag.appendChild(style);
+    const placed = []; // tag rectangles already used, in document coordinates
+    const overlaps = (a) => placed.some((b) => a.l < b.r && b.l < a.r && a.t < b.b && b.t < a.b);
     for (const d of dets) {
       const b = d.el.getBoundingClientRect();
+      const left = b.left + scrollX - 3, top = b.top + scrollY - 3, w = b.width + 6, h = b.height + 6;
       const box = document.createElement('div');
       box.className = 'box';
-      box.style.left = b.left + scrollX - 3 + 'px';
-      box.style.top = b.top + scrollY - 3 + 'px';
-      box.style.width = b.width + 6 + 'px';
-      box.style.height = b.height + 6 + 'px';
+      Object.assign(box.style, { left: left + 'px', top: top + 'px', width: w + 'px', height: h + 'px' });
       const tag = document.createElement('div');
       tag.className = 'tag';
       tag.textContent = `${d.name} (CCPA): ${d.explanation}`;
       box.appendChild(tag);
       frag.appendChild(box);
+      // estimate the tag size, then place it above the box, or below if that spot is taken
+      const tw = Math.min(440, 7 + tag.textContent.length * 5.6), th = tw >= 440 ? 32 : 18;
+      const above = { l: left, r: left + tw, t: top - th - 2, b: top - 2 };
+      const below = { l: left, r: left + tw, t: top + h + 2, b: top + h + th + 2 };
+      const spot = overlaps(above) && !overlaps(below) ? below : above;
+      tag.style.left = '-2px';
+      tag.style.top = (spot === above ? -(th + 2) : h + 2) + 'px';
+      placed.push(spot);
     }
     overlayRoot.replaceChildren(frag);
   }
