@@ -1,0 +1,73 @@
+{
+  "yada": {
+    "file": "data_public/yada_dataset.tsv",
+    "columns": [
+      "page_id",
+      "text",
+      "label",
+      "Pattern Category"
+    ],
+    "rows": 2356,
+    "label_counts": {
+      "0": 1178,
+      "1": 1178
+    },
+    "pattern_category_counts": {
+      "Not Dark Pattern": 1178,
+      "Scarcity": 418,
+      "Social Proof": 312,
+      "Urgency": 210,
+      "Misdirection": 195,
+      "Obstruction": 27,
+      "Sneaking": 12,
+      "Forced Action": 4
+    },
+    "missing_text": 0,
+    "unique_page_ids": 1248
+  },
+  "mathur": {
+    "file": "data_public/mathur_dark-patterns.csv",
+    "columns": [
+      "Pattern String",
+      "Comment",
+      "Pattern Category",
+      "Pattern Type",
+      "Where in website?",
+      "Deceptive?",
+      "Website Page"
+    ],
+    "rows": 1818,
+    "pattern_category_counts": {
+      "Scarcity": 679,
+      "Urgency": 481,
+      "Social Proof": 325,
+      "Misdirection": 270,
+      "Obstruction": 31,
+      "Sneaking": 26,
+      "Forced Action": 6
+    },
+    "pattern_type_counts": {
+      "Low-stock Message": 632,
+      "Countdown Timer": 393,
+      "Activity Notification": 313,
+      "Confirmshaming": 169,
+      "Limited-time Message": 88,
+      "Pressured Selling": 67,
+      "High-demand Message": 47,
+      "Hard to Cancel": 31,
+      "Visual Interference": 25,
+      "Hidden Subscription": 14,
+      "Testimonials of Uncertain Origin": 12,
+      "Trick Questions": 9,
+      "Sneak into Basket": 7,
+      "Forced Enrollment": 6,
+      "Hidden Costs": 5
+    },
+    "deceptive_counts": {
+      "No": 1584,
+      "Yes": 208,
+      "Depends": 26
+    },
+    "missing_pattern_string": 306
+  }
+}
