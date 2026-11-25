@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bazaarwala Demo Store - Checkout (fair version)</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 720px; margin: 20px auto; color: #222; background: #fff; padding: 0 16px; }
+  .note { background: #f3f3f3; padding: 8px 12px; font-size: 13px; border: 1px solid #ddd; }
+  section { border: 1px solid #ddd; padding: 12px 16px; margin: 14px 0; }
+  .row { display: flex; justify-content: space-between; padding: 3px 0; }
+  .total { font-weight: bold; border-top: 1px solid #ccc; margin-top: 6px; padding-top: 6px; }
+  .btn { display: inline-block; padding: 10px 18px; background: #1d5fbf; color: #fff; border: 0; font-size: 15px; cursor: pointer; min-width: 180px; }
+</style>
+</head>
+<body>
+<p class="note">Demo page for PatternGuard. Bazaarwala is a made-up shop. This is the fair version of the checkout.</p>
+<h1>Bazaarwala Demo Store: Checkout</h1>
+
+<section id="urgency">
+  <p>Sale price valid until 30 November at 11:59 PM.</p>
+  <p>Only 2 left in stock.</p>
+</section>
+
+<section id="order">
+  <h2>Your order</h2>
+  <div class="row"><span>Steel water bottle, 1 L</span><span>₹699</span></div>
+  <div class="row"><span>Delivery fee</span><span>₹40</span></div>
+  <div class="row total"><span>Total</span><span>₹739</span></div>
+</section>
+
+<section id="protection">
+  <label><input type="checkbox" id="order-protection"> Add Order Protection Plan ₹199</label>
+</section>
+
+<section id="warranty">
+  <p>Protect your bottle for one year.</p>
+  <button class="btn" id="warranty-yes">Add warranty ₹149</button>
+  <button class="btn" id="warranty-no">No, thanks</button>
+</section>
+
+<section id="consent">
+  <label><input type="checkbox" id="offers"> Send me offers by email</label>
+</section>
+
+<button class="btn" id="place-order">Place order</button>
+</body>
+</html>

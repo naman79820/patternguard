@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bazaarwala Demo Store - Checkout (dark version)</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 720px; margin: 20px auto; color: #222; background: #fff; padding: 0 16px; }
+  .note { background: #f3f3f3; padding: 8px 12px; font-size: 13px; border: 1px solid #ddd; }
+  section { border: 1px solid #ddd; padding: 12px 16px; margin: 14px 0; }
+  .row { display: flex; justify-content: space-between; padding: 3px 0; }
+  .total { font-weight: bold; border-top: 1px solid #ccc; margin-top: 6px; padding-top: 6px; }
+  .btn { display: inline-block; padding: 10px 18px; background: #1d5fbf; color: #fff; border: 0; font-size: 15px; cursor: pointer; }
+  .btn.secondary { background: #e9e9e9; color: #222; }
+  .faint { color: #d0d0d0; font-size: 10px; text-decoration: none; margin-left: 10px; }
+  #timer { font-weight: bold; }
+</style>
+</head>
+<body>
+<p class="note">Demo page for PatternGuard. Bazaarwala is a made-up shop. This page deliberately contains dark patterns.</p>
+<h1>Bazaarwala Demo Store: Checkout</h1>
+
+<section id="urgency">
+  <p>Special price! Offer ends in <span id="timer">10:00</span></p>
+  <p>Only 2 left in stock.</p>
+</section>
+
+<section id="order">
+  <h2>Your order</h2>
+  <div class="row"><span>Steel water bottle, 1 L</span><span>₹699</span></div>
+  <div class="row"><span>Delivery fee</span><span>₹40</span></div>
+  <div class="row total"><span>Total</span><span>₹739</span></div>
+</section>
+
+<section id="protection">
+  <label><input type="checkbox" id="order-protection" checked> Add Order Protection Plan ₹199</label>
+</section>
+
+<section id="warranty">
+  <p>Protect your bottle for one year.</p>
+  <button class="btn" id="warranty-yes">Yes, add 1-year warranty ₹149</button>
+  <a href="#" class="faint" id="warranty-no">no thanks</a>
+</section>
+
+<section id="coupon">
+  <p>Use coupon SAVE50 to get ₹50 off.</p>
+  <button class="btn secondary" id="coupon-apply">Apply coupon</button>
+  <button class="btn secondary" id="coupon-decline">No thanks, I'd rather pay full price</button>
+</section>
+
+<section id="consent">
+  <label id="offers-label"><input type="checkbox" id="offers" checked> Uncheck this box if you do not want to not receive offers</label>
+</section>
+
+<button class="btn" id="place-order">Place order</button>
+
+<script>
+  // The countdown restarts at 10:00 on every load (false urgency).
+  let left = 600;
+  const el = document.getElementById('timer');
+  setInterval(() => {
+    left = Math.max(0, left - 1);
+    el.textContent = String(Math.floor(left / 60)).padStart(2, '0') + ':' + String(left % 60).padStart(2, '0');
+  }, 1000);
+  document.getElementById('warranty-no').addEventListener('click', (e) => e.preventDefault());
+</script>
+</body>
+</html>

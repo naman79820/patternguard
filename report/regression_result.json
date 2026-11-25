@@ -1,0 +1,116 @@
+{
+  "passed": 14,
+  "failed": 0,
+  "checks": [
+    {
+      "check": "dark-checkout first load: count",
+      "expected": 4,
+      "actual": 4,
+      "pass": true
+    },
+    {
+      "check": "dark-checkout first load: categories",
+      "expected": [
+        "basket_sneaking",
+        "confirm_shaming",
+        "interface_interference",
+        "trick_question"
+      ],
+      "actual": [
+        "basket_sneaking",
+        "confirm_shaming",
+        "interface_interference",
+        "trick_question"
+      ],
+      "pass": true
+    },
+    {
+      "check": "dark-checkout: automatic redraws during 8 s idle",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "check": "dark-checkout: automatic rescans during 8 s idle",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "check": "dark-checkout after one reload: count",
+      "expected": 5,
+      "actual": 5,
+      "pass": true
+    },
+    {
+      "check": "dark-checkout after one reload: has false_urgency",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "fair-checkout first load: count",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "check": "fair-checkout after reload: count",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "check": "spa-booking #review: count",
+      "expected": 0,
+      "actual": 0,
+      "pass": true
+    },
+    {
+      "check": "spa-booking #addons: count",
+      "expected": 3,
+      "actual": 3,
+      "pass": true
+    },
+    {
+      "check": "spa-booking #addons: categories",
+      "expected": [
+        "basket_sneaking",
+        "basket_sneaking",
+        "confirm_shaming"
+      ],
+      "actual": [
+        "basket_sneaking",
+        "basket_sneaking",
+        "confirm_shaming"
+      ],
+      "pass": true
+    },
+    {
+      "check": "spa-booking #payment: count",
+      "expected": 1,
+      "actual": 1,
+      "pass": true
+    },
+    {
+      "check": "spa-booking #payment: categories",
+      "expected": [
+        "drip_pricing"
+      ],
+      "actual": [
+        "drip_pricing"
+      ],
+      "pass": true
+    },
+    {
+      "check": "spa-booking #addons after user ticks options: categories",
+      "expected": [
+        "confirm_shaming"
+      ],
+      "actual": [
+        "confirm_shaming"
+      ],
+      "pass": true
+    }
+  ]
+}

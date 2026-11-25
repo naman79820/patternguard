@@ -1,0 +1,42 @@
+[
+  {
+    "name": "contrast black on white is 21:1",
+    "pass": true
+  },
+  {
+    "name": "contrast is symmetric and 1:1 for equal colours",
+    "pass": true
+  },
+  {
+    "name": "contrast #777 on white is about 4.48:1 (WCAG reference)",
+    "pass": true
+  },
+  {
+    "name": "parseColor handles rgb, rgba and hex",
+    "pass": true
+  },
+  {
+    "name": "timerSeconds reads mm:ss and ignores clock times",
+    "pass": true
+  },
+  {
+    "name": "parseAmount reads rupee amounts",
+    "pass": true
+  },
+  {
+    "name": "text scorer: confirm shaming wording",
+    "pass": true
+  },
+  {
+    "name": "text scorer: neutral dismissal gives all zeros",
+    "pass": true
+  },
+  {
+    "name": "text scorer: empty and whitespace give all zeros",
+    "pass": true
+  },
+  {
+    "name": "manipulation score follows eq. 3.7",
+    "pass": true
+  }
+]

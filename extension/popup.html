@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PatternGuard</title>
+<style>
+  body { font: 13px/1.4 Arial, sans-serif; width: 340px; margin: 0; color: #222; background: #fff; }
+  header { padding: 10px 12px; border-bottom: 1px solid #ddd; }
+  h1 { font-size: 15px; margin: 0; }
+  .score { padding: 10px 12px; border-bottom: 1px solid #ddd; }
+  .score b { font-size: 22px; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { padding: 8px 12px; border-bottom: 1px solid #eee; }
+  .cat { font-weight: bold; color: #c0392b; }
+  .ev { color: #555; font-size: 12px; }
+  .empty { padding: 12px; color: #2e7d32; }
+  .note { padding: 8px 12px; color: #777; font-size: 11px; }
+</style>
+</head>
+<body>
+<header><h1>PatternGuard</h1><div id="site"></div></header>
+<div class="score">Manipulation Score S: <b id="S">-</b><div id="pages" class="ev"></div></div>
+<ul id="list"></ul>
+<div class="note">Indicators for review, not legal findings. Categories follow the CCPA Guidelines for Prevention and Regulation of Dark Patterns, 2023.</div>
+<script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "PatternGuard",
+  "version": "0.1.0",
+  "description": "Highlights possible dark patterns and maps them to the 13 CCPA categories.",
+  "permissions": ["storage"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["categories.js", "score.js", "rules.js", "text.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": { "default_title": "PatternGuard", "default_popup": "popup.html" }
+}

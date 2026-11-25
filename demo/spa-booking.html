@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SkyNest Travels Demo - Booking</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 720px; margin: 20px auto; color: #222; background: #fff; padding: 0 16px; }
+  .note { background: #f3f3f3; padding: 8px 12px; font-size: 13px; border: 1px solid #ddd; }
+  section { border: 1px solid #ddd; padding: 12px 16px; margin: 14px 0; }
+  .row { display: flex; justify-content: space-between; padding: 3px 0; }
+  .total { font-weight: bold; border-top: 1px solid #ccc; margin-top: 6px; padding-top: 6px; }
+  .btn { display: inline-block; padding: 10px 18px; background: #0b7a5a; color: #fff; border: 0; font-size: 15px; cursor: pointer; text-decoration: none; }
+  .switch { display: inline-block; width: 40px; height: 22px; border-radius: 11px; background: #bbb; vertical-align: middle; cursor: pointer; position: relative; }
+  .switch[aria-checked=true] { background: #0b7a5a; }
+  .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; }
+  .switch[aria-checked=true]::after { left: 21px; }
+  nav { font-size: 13px; color: #666; }
+</style>
+</head>
+<body>
+<p class="note">Demo page for PatternGuard. SkyNest Travels is a made-up airline booking site. This single-page app uses hash routes: #review, #addons, #payment.</p>
+<h1>SkyNest Travels</h1>
+<nav id="steps">Review &gt; Add-ons &gt; Payment</nav>
+<div id="app"></div>
+<script>
+  const state = { insurance: null, priority: null };
+  const app = document.getElementById('app');
+  const fare = 4500, taxes = 620, convenience = 349;
+  const rupees = (n) => '₹' + n.toLocaleString('en-IN');
+
+  function review() {
+    app.innerHTML = `
+      <section><h2>Review your flight</h2>
+        <p>Delhi to Mumbai, 1 adult, economy</p>
+        <div class="row"><span>Base fare</span><span>${rupees(fare)}</span></div>
+        <div class="row"><span>Taxes and fees</span><span>${rupees(taxes)}</span></div>
+        <div class="row total"><span>Total</span><span>${rupees(fare + taxes)}</span></div>
+      </section>
+      <a class="btn" href="#addons" id="to-addons">Continue to add-ons</a>`;
+  }
+
+  function addons() {
+    app.innerHTML = `
+      <section><h2>Add-ons</h2>
+        <p><label><input type="checkbox" id="insurance"> Travel insurance ₹199</label></p>
+        <p><span class="switch" role="switch" id="priority" tabindex="0" aria-checked="false" aria-labelledby="priority-label"></span>
+           <span id="priority-label">Priority check-in ₹299</span></p>
+      </section>
+      <a class="btn" href="#payment" id="to-payment">Continue</a>
+      <button class="btn" id="decline-addons">No, I don't want to protect my trip</button>`;
+    // Options are ticked from code after render, as many modern sites do.
+    const ins = document.getElementById('insurance');
+    const pri = document.getElementById('priority');
+    ins.checked = state.insurance === null ? true : state.insurance;
+    pri.setAttribute('aria-checked', String(state.priority === null ? true : state.priority));
+    if (state.insurance === null) state.insurance = true;
+    if (state.priority === null) state.priority = true;
+    ins.addEventListener('change', () => { state.insurance = ins.checked; });
+    pri.addEventListener('click', () => {
+      const v = pri.getAttribute('aria-checked') !== 'true';
+      pri.setAttribute('aria-checked', String(v));
+      state.priority = v;
+    });
+    document.getElementById('decline-addons').addEventListener('click', () => {
+      state.insurance = false; state.priority = false; location.hash = '#payment';
+    });
+  }
+
+  function payment() {
+    const ins = state.insurance ? 199 : 0, pri = state.priority ? 299 : 0;
+    app.innerHTML = `
+      <section><h2>Payment</h2>
+        <div class="row"><span>Base fare</span><span>${rupees(fare)}</span></div>
+        <div class="row"><span>Taxes and fees</span><span>${rupees(taxes)}</span></div>
+        ${ins ? `<div class="row"><span>Travel insurance</span><span>${rupees(ins)}</span></div>` : ''}
+        ${pri ? `<div class="row"><span>Priority check-in</span><span>${rupees(pri)}</span></div>` : ''}
+        <div class="row"><span>Convenience fee</span><span>${rupees(convenience)}</span></div>
+        <div class="row total"><span>Total</span><span>${rupees(fare + taxes + ins + pri + convenience)}</span></div>
+      </section>
+      <button class="btn" id="pay">Pay now</button>`;
+  }
+
+  function route() {
+    const h = location.hash || '#review';
+    if (h === '#addons') addons();
+    else if (h === '#payment') payment();
+    else review();
+  }
+  window.addEventListener('hashchange', route);
+  route();
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "python": "3.12.13",
+  "node": "v22.22.3",
+  "chromium": "159.0.8154.6",
+  "playwright": "1.65.2",
+  "os": "Windows 10 (10.0.19045)",
+  "machine": "AMD64",
+  "processor": "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel",
+  "git": "git version 2.51.0.windows.1",
+  "python_packages": {
+    "playwright": "1.65.2",
+    "pandas": "3.1.1",
+    "scikit-learn": "1.9.1",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.5",
+    "python-docx": "1.2.0",
+    "torch": null,
+    "transformers": null,
+    "datasets": null
+  }
+}
