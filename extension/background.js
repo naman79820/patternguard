@@ -3,13 +3,15 @@
  * and sets the toolbar badge. Everything stays in chrome.storage on this machine. */
 importScripts('categories.js', 'score.js');
 
-async function getConfig() {
-  return {
-    tau: PG.DEFAULTS.tau,
-    rules: PG.DEFAULTS.rules,
-    rescanMinIntervalMs: PG.DEFAULTS.rescanMinIntervalMs,
-    categories: PG.CATEGORIES.map((c) => ({ key: c.key, alpha: c.alpha, severity: c.severity }))
-  };
+let configPromise = null;
+// config.json holds alpha_k, severity w_k, tau and rule thresholds (requirement R4).
+function getConfig() {
+  if (!configPromise) {
+    configPromise = fetch(chrome.runtime.getURL('config.json'))
+      .then((r) => r.json())
+      .catch((e) => { configPromise = null; throw e; });
+  }
+  return configPromise;
 }
 
 async function storeResults(msg, sender) {
@@ -32,7 +34,7 @@ async function storeResults(msg, sender) {
 }
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-  if (msg && msg.type === 'pg:getConfig') { getConfig().then(sendResponse); return true; }
+  if (msg && msg.type === 'pg:getConfig') { getConfig().then(sendResponse, () => sendResponse(null)); return true; }
   if (msg && msg.type === 'pg:results') { storeResults(msg, sender).then(sendResponse); return true; }
   return false;
 });

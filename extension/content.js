@@ -23,22 +23,19 @@
 
   // ---------- configuration ----------
   async function loadConfig() {
+    // config.json is read by the service worker; retry briefly while it starts up.
     let cfg = null;
-    try {
-      cfg = await chrome.runtime.sendMessage({ type: 'pg:getConfig' });
-    } catch (e) { /* background unavailable: fall back to defaults */ }
-    if (!cfg || !cfg.categories) {
-      cfg = {
-        tau: PG.DEFAULTS.tau, rules: PG.DEFAULTS.rules, rescanMinIntervalMs: PG.DEFAULTS.rescanMinIntervalMs,
-        categories: PG.CATEGORIES.map((c) => ({ key: c.key, alpha: c.alpha, severity: c.severity }))
-      };
+    for (let i = 0; i < 5 && !(cfg && cfg.categories); i++) {
+      try { cfg = await chrome.runtime.sendMessage({ type: 'pg:getConfig' }); } catch (e) { cfg = null; }
+      if (!(cfg && cfg.categories)) await new Promise((r) => setTimeout(r, 200 * (i + 1)));
     }
-    // merge with names and explanations from categories.js
+    if (!(cfg && cfg.categories)) throw new Error('PatternGuard: config.json could not be loaded');
+    // merge numeric parameters from config.json with names and explanations from categories.js
     cfg.categories = PG.CATEGORIES.map((c) => {
-      const o = cfg.categories.find((x) => x.key === c.key) || {};
-      return { ...c, alpha: o.alpha ?? c.alpha, severity: o.severity ?? c.severity };
+      const o = cfg.categories.find((x) => x.key === c.key);
+      if (!o) throw new Error('PatternGuard: config.json has no entry for ' + c.key);
+      return { ...c, alpha: o.alpha, severity: o.severity };
     });
-    cfg.rules = { ...PG.DEFAULTS.rules, ...(cfg.rules || {}) };
     return cfg;
   }
 

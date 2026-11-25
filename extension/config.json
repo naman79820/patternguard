@@ -1,0 +1,26 @@
+{
+  "tau": 0.6,
+  "rescanMinIntervalMs": 3000,
+  "rules": {
+    "contrastLimit": 3.0,
+    "sizeRatio": 4.0,
+    "overlayCoverage": 0.6,
+    "timerSlackSeconds": 5,
+    "memoryMinutes": 30
+  },
+  "categories": [
+    { "key": "false_urgency", "alpha": 1, "severity": 1 },
+    { "key": "basket_sneaking", "alpha": 1, "severity": 1 },
+    { "key": "confirm_shaming", "alpha": 0, "severity": 1 },
+    { "key": "forced_action", "alpha": 0.5, "severity": 1 },
+    { "key": "subscription_trap", "alpha": 1, "severity": 1 },
+    { "key": "interface_interference", "alpha": 1, "severity": 1 },
+    { "key": "bait_and_switch", "alpha": 0, "severity": 1 },
+    { "key": "drip_pricing", "alpha": 1, "severity": 1 },
+    { "key": "disguised_advertisement", "alpha": 0, "severity": 1 },
+    { "key": "nagging", "alpha": 1, "severity": 1 },
+    { "key": "trick_question", "alpha": 0, "severity": 1 },
+    { "key": "saas_billing", "alpha": 0, "severity": 1 },
+    { "key": "rogue_malware", "alpha": 0, "severity": 1 }
+  ]
+}

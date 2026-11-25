@@ -1,0 +1,67 @@
+{
+  "id": "TC-H05",
+  "changed_parameter": "categories[confirm_shaming].alpha: 0 -> 1 (temporary copy of config.json)",
+  "only_config_differs": true,
+  "default_detections": [
+    {
+      "key": "basket_sneaking",
+      "confidence": 1,
+      "r": 1,
+      "t": 0,
+      "alpha": 1,
+      "path": "#order-protection"
+    },
+    {
+      "key": "interface_interference",
+      "confidence": 1,
+      "r": 1,
+      "t": 0,
+      "alpha": 1,
+      "path": "#warranty-no"
+    },
+    {
+      "key": "confirm_shaming",
+      "confidence": 0.9,
+      "r": 0,
+      "t": 0.9,
+      "alpha": 0,
+      "path": "#coupon-decline"
+    },
+    {
+      "key": "trick_question",
+      "confidence": 0.9,
+      "r": 0,
+      "t": 0.9,
+      "alpha": 0,
+      "path": "#offers-label"
+    }
+  ],
+  "modified_detections": [
+    {
+      "key": "basket_sneaking",
+      "confidence": 1,
+      "r": 1,
+      "t": 0,
+      "alpha": 1,
+      "path": "#order-protection"
+    },
+    {
+      "key": "interface_interference",
+      "confidence": 1,
+      "r": 1,
+      "t": 0,
+      "alpha": 1,
+      "path": "#warranty-no"
+    },
+    {
+      "key": "trick_question",
+      "confidence": 0.9,
+      "r": 0,
+      "t": 0.9,
+      "alpha": 0,
+      "path": "#offers-label"
+    }
+  ],
+  "fused_output_changed": true,
+  "pass": true
+}
