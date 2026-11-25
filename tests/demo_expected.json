@@ -1,0 +1,28 @@
+{
+  "note": "Element-level ground truth for the demo pages, matching the expected counts in the project summary (Section 1 of the task brief).",
+  "pages": [
+    { "file": "demo/dark-checkout.html", "steps": [
+      { "name": "first load", "expected": [
+        { "selector": "#order-protection", "category": "basket_sneaking" },
+        { "selector": "#warranty-no", "category": "interface_interference" },
+        { "selector": "#coupon-decline", "category": "confirm_shaming" },
+        { "selector": "#offers-label", "category": "trick_question" } ] },
+      { "name": "after reload", "reload_after_s": 8, "expected": [
+        { "selector": "#timer", "category": "false_urgency" },
+        { "selector": "#order-protection", "category": "basket_sneaking" },
+        { "selector": "#warranty-no", "category": "interface_interference" },
+        { "selector": "#coupon-decline", "category": "confirm_shaming" },
+        { "selector": "#offers-label", "category": "trick_question" } ] } ] },
+    { "file": "demo/fair-checkout.html", "steps": [
+      { "name": "first load", "expected": [] },
+      { "name": "after reload", "reload_after_s": 6, "expected": [] } ] },
+    { "file": "demo/spa-booking.html#review", "steps": [
+      { "name": "review", "expected": [] },
+      { "name": "addons", "action": { "click": "#to-addons", "wait_for": "#addons" }, "expected": [
+        { "selector": "#insurance", "category": "basket_sneaking" },
+        { "selector": "#priority", "category": "basket_sneaking" },
+        { "selector": "#decline-addons", "category": "confirm_shaming" } ] },
+      { "name": "payment", "action": { "click": "#to-payment", "wait_for": "#payment" }, "expected": [
+        { "selector": "#fee-convenience", "category": "drip_pricing" } ] } ] }
+  ]
+}

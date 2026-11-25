@@ -1,0 +1,909 @@
+{
+  "description": "Controlled test set: demo pages and reconstructed case pages written by the team, element-level ground truth from tests/demo_expected.json and tests/cases_expected.json. Not held-out sites.",
+  "configs": {
+    "text_only": {
+      "overall": {
+        "tp": 7,
+        "fp": 6,
+        "fn": 13,
+        "precision": 0.5385,
+        "recall": 0.35,
+        "f1": 0.4242
+      },
+      "per_category": {
+        "false_urgency": {
+          "tp": 0,
+          "fp": 6,
+          "fn": 1,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "basket_sneaking": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 7,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "confirm_shaming": {
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "interface_interference": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "drip_pricing": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 3,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "trick_question": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "latency": {
+        "since_load_ms": {
+          "n": 10,
+          "median": 21.8,
+          "max": 65.4
+        },
+        "scan_ms": {
+          "n": 15,
+          "median": 14.3,
+          "max": 22.3
+        }
+      }
+    },
+    "rules_only": {
+      "overall": {
+        "tp": 13,
+        "fp": 0,
+        "fn": 7,
+        "precision": 1.0,
+        "recall": 0.65,
+        "f1": 0.7879
+      },
+      "per_category": {
+        "false_urgency": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "basket_sneaking": {
+          "tp": 7,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "confirm_shaming": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 5,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "interface_interference": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "drip_pricing": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "trick_question": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        }
+      },
+      "latency": {
+        "since_load_ms": {
+          "n": 10,
+          "median": 18.8,
+          "max": 58.2
+        },
+        "scan_ms": {
+          "n": 15,
+          "median": 12.6,
+          "max": 24.9
+        }
+      }
+    },
+    "combined": {
+      "overall": {
+        "tp": 20,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "per_category": {
+        "false_urgency": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "basket_sneaking": {
+          "tp": 7,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "confirm_shaming": {
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "interface_interference": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "drip_pricing": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "trick_question": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      },
+      "latency": {
+        "since_load_ms": {
+          "n": 10,
+          "median": 21.5,
+          "max": 86.3
+        },
+        "scan_ms": {
+          "n": 15,
+          "median": 13.1,
+          "max": 36.4
+        }
+      }
+    }
+  },
+  "rows": [
+    {
+      "config": "text_only",
+      "page": "demo/dark-checkout.html",
+      "step": "first load",
+      "tp": [
+        "confirm_shaming",
+        "trick_question"
+      ],
+      "fp": [
+        {
+          "key": "false_urgency",
+          "path": "#urgency > p:nth-of-type(1)",
+          "text": "Special price! Offer ends in 10:00"
+        },
+        {
+          "key": "false_urgency",
+          "path": "#urgency > p:nth-of-type(2)",
+          "text": "Only 2 left in stock."
+        }
+      ],
+      "fn": [
+        {
+          "category": "basket_sneaking",
+          "selector": "#order-protection"
+        },
+        {
+          "category": "interface_interference",
+          "selector": "#warranty-no"
+        }
+      ],
+      "scanMs": 22.3,
+      "sinceLoadMs": 65.4,
+      "reason": "initial"
+    },
+    {
+      "config": "text_only",
+      "page": "demo/dark-checkout.html",
+      "step": "after reload",
+      "tp": [
+        "confirm_shaming",
+        "trick_question"
+      ],
+      "fp": [
+        {
+          "key": "false_urgency",
+          "path": "#urgency > p:nth-of-type(1)",
+          "text": "Special price! Offer ends in 10:00"
+        },
+        {
+          "key": "false_urgency",
+          "path": "#urgency > p:nth-of-type(2)",
+          "text": "Only 2 left in stock."
+        }
+      ],
+      "fn": [
+        {
+          "category": "false_urgency",
+          "selector": "#timer"
+        },
+        {
+          "category": "basket_sneaking",
+          "selector": "#order-protection"
+        },
+        {
+          "category": "interface_interference",
+          "selector": "#warranty-no"
+        }
+      ],
+      "scanMs": 11.5,
+      "sinceLoadMs": 26.4,
+      "reason": "initial"
+    },
+    {
+      "config": "text_only",
+      "page": "demo/fair-checkout.html",
+      "step": "first load",
+      "tp": [],
+      "fp": [
+        {
+          "key": "false_urgency",
+          "path": "#urgency > p:nth-of-type(2)",
+          "text": "Only 2 left in stock."
+        }
+      ],
+      "fn": [],
+      "scanMs": 19.5,
+      "sinceLoadMs": 59.8,
+      "reason": "initial"
+    },
+    {
+      "config": "text_only",
+      "page": "demo/fair-checkout.html",
+      "step": "after reload",
+      "tp": [],
+      "fp": [
+        {
+          "key": "false_urgency",
+          "path": "#urgency > p:nth-of-type(2)",
+          "text": "Only 2 left in stock."
+        }
+      ],
+      "fn": [],
+      "scanMs": 8.6,
+      "sinceLoadMs": 14.6,
+      "reason": "initial"
+    },
+    {
+      "config": "text_only",
+      "page": "demo/spa-booking.html#review",
+      "step": "review",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 16,
+      "sinceLoadMs": 20.5,
+      "reason": "initial"
+    },
+    {
+      "config": "text_only",
+      "page": "demo/spa-booking.html#review",
+      "step": "addons",
+      "tp": [
+        "confirm_shaming"
+      ],
+      "fp": [],
+      "fn": [
+        {
+          "category": "basket_sneaking",
+          "selector": "#insurance"
+        },
+        {
+          "category": "basket_sneaking",
+          "selector": "#priority"
+        }
+      ],
+      "scanMs": 4.5,
+      "sinceLoadMs": null,
+      "reason": "popstate"
+    },
+    {
+      "config": "text_only",
+      "page": "demo/spa-booking.html#review",
+      "step": "payment",
+      "tp": [],
+      "fp": [],
+      "fn": [
+        {
+          "category": "drip_pricing",
+          "selector": "#fee-convenience"
+        }
+      ],
+      "scanMs": 4.5,
+      "sinceLoadMs": null,
+      "reason": "popstate"
+    },
+    {
+      "config": "text_only",
+      "page": "demo/cases/case1_ticket_donation.html",
+      "step": "checkout",
+      "tp": [],
+      "fp": [],
+      "fn": [
+        {
+          "category": "basket_sneaking",
+          "selector": "#donation"
+        }
+      ],
+      "scanMs": 17.3,
+      "sinceLoadMs": 22,
+      "reason": "initial"
+    },
+    {
+      "config": "text_only",
+      "page": "demo/cases/case2_airline_risk.html",
+      "step": "flight",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 19.9,
+      "sinceLoadMs": 23.8,
+      "reason": "initial"
+    },
+    {
+      "config": "text_only",
+      "page": "demo/cases/case2_airline_risk.html",
+      "step": "addons",
+      "tp": [
+        "confirm_shaming"
+      ],
+      "fp": [],
+      "fn": [],
+      "scanMs": 4.7,
+      "sinceLoadMs": null,
+      "reason": "popstate"
+    },
+    {
+      "config": "text_only",
+      "page": "demo/cases/case3_quick_commerce.html",
+      "step": "cart",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 14.3,
+      "sinceLoadMs": 16.9,
+      "reason": "initial"
+    },
+    {
+      "config": "text_only",
+      "page": "demo/cases/case3_quick_commerce.html",
+      "step": "checkout",
+      "tp": [],
+      "fp": [],
+      "fn": [
+        {
+          "category": "drip_pricing",
+          "selector": "#handling"
+        },
+        {
+          "category": "drip_pricing",
+          "selector": "#membership-line"
+        },
+        {
+          "category": "basket_sneaking",
+          "selector": "#membership"
+        }
+      ],
+      "scanMs": 4.4,
+      "sinceLoadMs": null,
+      "reason": "mutation"
+    },
+    {
+      "config": "text_only",
+      "page": "demo/cases/case4_edtech_donation.html",
+      "step": "checkout",
+      "tp": [
+        "confirm_shaming"
+      ],
+      "fp": [],
+      "fn": [
+        {
+          "category": "basket_sneaking",
+          "selector": "#donation"
+        }
+      ],
+      "scanMs": 17.9,
+      "sinceLoadMs": 21.6,
+      "reason": "initial"
+    },
+    {
+      "config": "text_only",
+      "page": "demo/cases/case5_fair_control.html",
+      "step": "cart",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 15.7,
+      "sinceLoadMs": 19.2,
+      "reason": "initial"
+    },
+    {
+      "config": "text_only",
+      "page": "demo/cases/case5_fair_control.html",
+      "step": "checkout",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 2.5,
+      "sinceLoadMs": null,
+      "reason": "mutation"
+    },
+    {
+      "config": "rules_only",
+      "page": "demo/dark-checkout.html",
+      "step": "first load",
+      "tp": [
+        "basket_sneaking",
+        "interface_interference"
+      ],
+      "fp": [],
+      "fn": [
+        {
+          "category": "confirm_shaming",
+          "selector": "#coupon-decline"
+        },
+        {
+          "category": "trick_question",
+          "selector": "#offers-label"
+        }
+      ],
+      "scanMs": 18,
+      "sinceLoadMs": 58.2,
+      "reason": "initial"
+    },
+    {
+      "config": "rules_only",
+      "page": "demo/dark-checkout.html",
+      "step": "after reload",
+      "tp": [
+        "false_urgency",
+        "basket_sneaking",
+        "interface_interference"
+      ],
+      "fp": [],
+      "fn": [
+        {
+          "category": "confirm_shaming",
+          "selector": "#coupon-decline"
+        },
+        {
+          "category": "trick_question",
+          "selector": "#offers-label"
+        }
+      ],
+      "scanMs": 5.1,
+      "sinceLoadMs": 9.4,
+      "reason": "initial"
+    },
+    {
+      "config": "rules_only",
+      "page": "demo/fair-checkout.html",
+      "step": "first load",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 24.9,
+      "sinceLoadMs": 54.1,
+      "reason": "initial"
+    },
+    {
+      "config": "rules_only",
+      "page": "demo/fair-checkout.html",
+      "step": "after reload",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 6.8,
+      "sinceLoadMs": 11.8,
+      "reason": "initial"
+    },
+    {
+      "config": "rules_only",
+      "page": "demo/spa-booking.html#review",
+      "step": "review",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 18.3,
+      "sinceLoadMs": 22.7,
+      "reason": "initial"
+    },
+    {
+      "config": "rules_only",
+      "page": "demo/spa-booking.html#review",
+      "step": "addons",
+      "tp": [
+        "basket_sneaking",
+        "basket_sneaking"
+      ],
+      "fp": [],
+      "fn": [
+        {
+          "category": "confirm_shaming",
+          "selector": "#decline-addons"
+        }
+      ],
+      "scanMs": 4.9,
+      "sinceLoadMs": null,
+      "reason": "popstate"
+    },
+    {
+      "config": "rules_only",
+      "page": "demo/spa-booking.html#review",
+      "step": "payment",
+      "tp": [
+        "drip_pricing"
+      ],
+      "fp": [],
+      "fn": [],
+      "scanMs": 4.5,
+      "sinceLoadMs": null,
+      "reason": "popstate"
+    },
+    {
+      "config": "rules_only",
+      "page": "demo/cases/case1_ticket_donation.html",
+      "step": "checkout",
+      "tp": [
+        "basket_sneaking"
+      ],
+      "fp": [],
+      "fn": [],
+      "scanMs": 16,
+      "sinceLoadMs": 19,
+      "reason": "initial"
+    },
+    {
+      "config": "rules_only",
+      "page": "demo/cases/case2_airline_risk.html",
+      "step": "flight",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 14.1,
+      "sinceLoadMs": 20.2,
+      "reason": "initial"
+    },
+    {
+      "config": "rules_only",
+      "page": "demo/cases/case2_airline_risk.html",
+      "step": "addons",
+      "tp": [],
+      "fp": [],
+      "fn": [
+        {
+          "category": "confirm_shaming",
+          "selector": "#no-cover"
+        }
+      ],
+      "scanMs": 3.1,
+      "sinceLoadMs": null,
+      "reason": "popstate"
+    },
+    {
+      "config": "rules_only",
+      "page": "demo/cases/case3_quick_commerce.html",
+      "step": "cart",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 12.6,
+      "sinceLoadMs": 16.1,
+      "reason": "initial"
+    },
+    {
+      "config": "rules_only",
+      "page": "demo/cases/case3_quick_commerce.html",
+      "step": "checkout",
+      "tp": [
+        "drip_pricing",
+        "drip_pricing",
+        "basket_sneaking"
+      ],
+      "fp": [],
+      "fn": [],
+      "scanMs": 3.7,
+      "sinceLoadMs": null,
+      "reason": "mutation"
+    },
+    {
+      "config": "rules_only",
+      "page": "demo/cases/case4_edtech_donation.html",
+      "step": "checkout",
+      "tp": [
+        "basket_sneaking"
+      ],
+      "fp": [],
+      "fn": [
+        {
+          "category": "confirm_shaming",
+          "selector": "#remove-donation"
+        }
+      ],
+      "scanMs": 15.1,
+      "sinceLoadMs": 18,
+      "reason": "initial"
+    },
+    {
+      "config": "rules_only",
+      "page": "demo/cases/case5_fair_control.html",
+      "step": "cart",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 16.1,
+      "sinceLoadMs": 18.6,
+      "reason": "initial"
+    },
+    {
+      "config": "rules_only",
+      "page": "demo/cases/case5_fair_control.html",
+      "step": "checkout",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 2.4,
+      "sinceLoadMs": null,
+      "reason": "mutation"
+    },
+    {
+      "config": "combined",
+      "page": "demo/dark-checkout.html",
+      "step": "first load",
+      "tp": [
+        "basket_sneaking",
+        "interface_interference",
+        "confirm_shaming",
+        "trick_question"
+      ],
+      "fp": [],
+      "fn": [],
+      "scanMs": 30.2,
+      "sinceLoadMs": 86.3,
+      "reason": "initial"
+    },
+    {
+      "config": "combined",
+      "page": "demo/dark-checkout.html",
+      "step": "after reload",
+      "tp": [
+        "false_urgency",
+        "basket_sneaking",
+        "interface_interference",
+        "confirm_shaming",
+        "trick_question"
+      ],
+      "fp": [],
+      "fn": [],
+      "scanMs": 12.4,
+      "sinceLoadMs": 21.2,
+      "reason": "initial"
+    },
+    {
+      "config": "combined",
+      "page": "demo/fair-checkout.html",
+      "step": "first load",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 23.1,
+      "sinceLoadMs": 49.1,
+      "reason": "initial"
+    },
+    {
+      "config": "combined",
+      "page": "demo/fair-checkout.html",
+      "step": "after reload",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 4.8,
+      "sinceLoadMs": 8.7,
+      "reason": "initial"
+    },
+    {
+      "config": "combined",
+      "page": "demo/spa-booking.html#review",
+      "step": "review",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 13.1,
+      "sinceLoadMs": 17.2,
+      "reason": "initial"
+    },
+    {
+      "config": "combined",
+      "page": "demo/spa-booking.html#review",
+      "step": "addons",
+      "tp": [
+        "basket_sneaking",
+        "basket_sneaking",
+        "confirm_shaming"
+      ],
+      "fp": [],
+      "fn": [],
+      "scanMs": 3.8,
+      "sinceLoadMs": null,
+      "reason": "popstate"
+    },
+    {
+      "config": "combined",
+      "page": "demo/spa-booking.html#review",
+      "step": "payment",
+      "tp": [
+        "drip_pricing"
+      ],
+      "fp": [],
+      "fn": [],
+      "scanMs": 5.7,
+      "sinceLoadMs": null,
+      "reason": "popstate"
+    },
+    {
+      "config": "combined",
+      "page": "demo/cases/case1_ticket_donation.html",
+      "step": "checkout",
+      "tp": [
+        "basket_sneaking"
+      ],
+      "fp": [],
+      "fn": [],
+      "scanMs": 36.4,
+      "sinceLoadMs": 38.8,
+      "reason": "initial"
+    },
+    {
+      "config": "combined",
+      "page": "demo/cases/case2_airline_risk.html",
+      "step": "flight",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 17.6,
+      "sinceLoadMs": 20.5,
+      "reason": "initial"
+    },
+    {
+      "config": "combined",
+      "page": "demo/cases/case2_airline_risk.html",
+      "step": "addons",
+      "tp": [
+        "confirm_shaming"
+      ],
+      "fp": [],
+      "fn": [],
+      "scanMs": 3.3,
+      "sinceLoadMs": null,
+      "reason": "popstate"
+    },
+    {
+      "config": "combined",
+      "page": "demo/cases/case3_quick_commerce.html",
+      "step": "cart",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 13.3,
+      "sinceLoadMs": 38.4,
+      "reason": "initial"
+    },
+    {
+      "config": "combined",
+      "page": "demo/cases/case3_quick_commerce.html",
+      "step": "checkout",
+      "tp": [
+        "drip_pricing",
+        "drip_pricing",
+        "basket_sneaking"
+      ],
+      "fp": [],
+      "fn": [],
+      "scanMs": 3.8,
+      "sinceLoadMs": null,
+      "reason": "mutation"
+    },
+    {
+      "config": "combined",
+      "page": "demo/cases/case4_edtech_donation.html",
+      "step": "checkout",
+      "tp": [
+        "basket_sneaking",
+        "confirm_shaming"
+      ],
+      "fp": [],
+      "fn": [],
+      "scanMs": 17.8,
+      "sinceLoadMs": 21.8,
+      "reason": "initial"
+    },
+    {
+      "config": "combined",
+      "page": "demo/cases/case5_fair_control.html",
+      "step": "cart",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 14.6,
+      "sinceLoadMs": 18.7,
+      "reason": "initial"
+    },
+    {
+      "config": "combined",
+      "page": "demo/cases/case5_fair_control.html",
+      "step": "checkout",
+      "tp": [],
+      "fp": [],
+      "fn": [],
+      "scanMs": 2.7,
+      "sinceLoadMs": null,
+      "reason": "mutation"
+    }
+  ],
+  "set_size": {
+    "pages": 8,
+    "page_states": 15,
+    "labelled_dark_pattern_elements": 20
+  }
+}

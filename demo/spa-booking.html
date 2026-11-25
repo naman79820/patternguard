@@ -74,7 +74,7 @@
         <div class="row"><span>Taxes and fees</span><span>${rupees(taxes)}</span></div>
         ${ins ? `<div class="row"><span>Travel insurance</span><span>${rupees(ins)}</span></div>` : ''}
         ${pri ? `<div class="row"><span>Priority check-in</span><span>${rupees(pri)}</span></div>` : ''}
-        <div class="row"><span>Convenience fee</span><span>${rupees(convenience)}</span></div>
+        <div class="row" id="fee-convenience"><span>Convenience fee</span><span>${rupees(convenience)}</span></div>
         <div class="row total"><span>Total</span><span>${rupees(fare + taxes + ins + pri + convenience)}</span></div>
       </section>
       <button class="btn" id="pay">Pay now</button>`;
